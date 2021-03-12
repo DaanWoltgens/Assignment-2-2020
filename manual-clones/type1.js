@@ -2,7 +2,7 @@ function function1(p1, p2) {
     return p1 * p2;
 }
 
-function function1copy(p1, p2) {
+function function1(p1, p2) {
     return p1*p2;
 }
 
@@ -14,7 +14,7 @@ function function2(p1, p2) {
     return p2;
 }
 
-function function2copy(p1,p2) {
+function function2(p1,p2) {
    while(p1 > 0){
 p2 += p1;
  p1--;
@@ -33,7 +33,7 @@ function function3(p1,p2,p3,p4) {
     return p3;
  }
 
-function function3copy(p1,p2,p3,p4) {
+function function3(p1,p2,p3,p4) {
 //This is a fuction
 p5 = p1 + p2;
 p6 = p3 + p4;
@@ -53,7 +53,7 @@ function function4(a,b){
     return a^2 + b^2
 }
 
-function function4copy(a,b){
+function function4(a,b){
     //This checks for negative values
 if(a<0 || b<0 ){
   return 0;
