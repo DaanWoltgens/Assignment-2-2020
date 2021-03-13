@@ -1,70 +1,61 @@
-function function1(p1, p2, p3) {
-    return p1 * p2;
-}
-
-function function1copy(a, b) {
-    return a*b;
-}
-
-function function2(p1, p2) {
-    p3 = p1 + p1;
-    while(p1 > 0){
-        p3 += 1;
-        p2 += p1;
-        p1--;
+function pivotSplit(arr, pivot) {
+    higher = [];
+    lower = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            lower.push(arr[i]);
+        } else {
+            higher.push(arr[i]);
+        }
     }
-    return p2;
+
+    return lower.concat(higher);
 }
 
-function function2copy(c,d) {
-   while(c > 0){
-c += d;
- c--;
+function lowHighSplit(arr, pivot, counter) {
+     higher = [];
+    lower = [];
+    for (let i = 0; i < arr.length; i++) {
+        counter++;
+            if (arr[i] < pivot) {
+                lower.push(arr[i]);
+            } else {
+                higher.push(arr[i]);
+            }
     }
-        return d;
+
+    return lower.concat(higher);
 }
 
-function function3(p1,p2,p3,p4, p7) {
-    p5 = p1 + p2;
-    p6 = p3 + p4;
-    while(p5 > p6){
-        p1 += p2;
-        p7 += 3;
-        p3 = p1 + p4;
-        p5 -= p1;
+
+function pivotSplit(arr, pivot) {
+    largerThanPivot = []; smallerThanPivot = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] < pivot) { smallerThanPivot.push(arr[i]); } 
+        else { largerThanPivot.push(arr[i]); }
     }
-    return p3;
- }
 
-function function3copy(x,y,z,a) {
-//This is a fuction
-p5 = x + y;
-p6 = z + a;
-g = 1;
-//I have no clue what this loop does
-while(p5 > p6){
-    x += y;
-    g += 1;
-    z = x + a;
-    p5 -= x;
-}
-return z;
+    result = smallerThanPivot.concat(largerThanPivot);
+    return result;
 }
 
-function function4(a,b,c){
-    c *= 2;
-    if(a<0 || b<0 ){
-        return 0;
+function pivotSplit(inputList, splittingValue) {
+    // initialize empty arrays
+    higher = [];
+    lower = [];
+    // iterate over input array
+    for (let i = 0; i < inputList.length; i++) {
+        // check whether the element belongs to the lower or higher list
+        if (inputList[i] < splittingValue) {
+            lower.push(arr[i]);
+        } else if (inputList[i] >= splittingValue) {
+            higher.push(arr[i]);
+        } else {
+            print("Something went wrong...")
+        }
     }
-    return a^2 + b^2
+
+    // concatenate and return
+    return lower.concat(higher);
 }
 
-function function4copy(x1,y1){
-    d = x1 + x2;
-    //This checks for negative values
-if(x1<0 || y1<0){
-  return 0;
-}
-    //This returns the length of the hypotenuse of a triangle
-    return x1^2 + y1^2
-}
