@@ -8,6 +8,8 @@ WORKDIR /usr/jquery-data
 
 COPY prep.py .
 
+COPY loc_per_version.py .
+
 COPY jquery_releases.csv .
 
 RUN python prep.py
