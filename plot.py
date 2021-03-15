@@ -44,7 +44,7 @@ axis_template = dict(autorange = True,
 
 fig.update_layout(margin = dict(t=200,r=200,b=200,l=200),
     xaxis = axis_template,
-    yaxis = axis_template,
+    yaxis=dict(autorange='reversed'),
     showlegend = False,
     width = 700, height = 700,
     autosize = False )
