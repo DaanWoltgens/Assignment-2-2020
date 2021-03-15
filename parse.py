@@ -26,7 +26,7 @@ for dup in dups:
 linecount = defaultdict(lambda:0)
 for key in sorted(count):
     #Keep track of current range
-    current_range = [0,0]
+    current_range = sorted(count[key])[0]
     for range in sorted(count[key]):
         #If lower bound of new range is higher than stored upperbound add to sum and set stored value
         if range[0] > current_range[1]:
@@ -39,12 +39,12 @@ for key in sorted(count):
 
 f = open("type1.csv", "w") 
 
-f.write(', '.join(("v1", "v2", "dup lines", "v1_lines", "v2_lines")) + "\n")
+f.write(', '.join(("v1", "v2", "dup lines", "v1_lines", "v2_lines", "measure")) + "\n")
 
 with open('loc.csv', mode='r') as infile:
     reader = csv.reader(infile)
     loc = {rows[0]:rows[1] for rows in reader}
 
 for key in sorted(linecount):
-    f.write(', '.join(key) + ", " + str(linecount[key]) +  ", " + loc[key[0]] + ", "+ loc[key[1]] + "\n")
+    f.write(', '.join(key) + ", " + str(linecount[key]) +  ", " + loc[key[0]] + ", "+ loc[key[1]] + ", " + str(linecount[key] / (int(loc[key[0]]) + int(loc[key[1]]))) + "\n")
         
