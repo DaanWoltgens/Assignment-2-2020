@@ -18,19 +18,24 @@ for dup in dups:
         #For each instance go through the list of all other instances
         for i in inst_list:
             version2 = Path(i['path']).parts[0]
-            #Iterate counter
+            #Add code range to list
             line = p['lines']
             count[version1,version2].append(line)
 
+#Can be overlapping ranges
 linecount = defaultdict(lambda:0)
 for key in sorted(count):
+    #Keep track of current range
     current_range = [0,0]
     for range in sorted(count[key]):
+        #If lower bound of new range is higher than stored upperbound add to sum and set stored value
         if range[0] > current_range[1]:
             linecount[key] += current_range[1] - current_range[0]
             current_range = range
         else:
-            current_range[1] = range[1]
+            #If new upperbound higher than old upperbound update value
+            if range[1] > current_range[1]:
+                current_range[1] = range[1]
 
 f = open("type1.csv", "w") 
 
