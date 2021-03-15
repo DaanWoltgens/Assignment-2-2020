@@ -7,7 +7,7 @@ dups = pd.read_csv('duplications.csv', sep=r'\s*,\s*')
 
 loc = pd.read_csv('loc.csv')
 
-loc = loc.sort_index(ascending=True)
+loc = loc.sort_index(ascending=False)
 
 versions = loc.iloc[:,0].values.tolist()
 sizes = loc.iloc[:,1].values.tolist()
@@ -18,12 +18,12 @@ for s in sizes:
     newsize = s + prev
     prev = newsize
     newsizes.append(newsize)
-negsizes = [-x for x in newsizes]
+
 z= []
 for v in versions:
     newlist = []
     for w in versions:
-        val = dups.loc[(dups['v1'] == w) & (dups['v2'] == v)]
+        val = dups.loc[(dups['v1'] == v) & (dups['v2'] == w)]
         if not val.empty:
             newlist.append(val.iloc[0]['measure'])
         else:
@@ -32,7 +32,7 @@ for v in versions:
 
 fig = go.Figure(data=go.Heatmap(
           x = newsizes,
-          y = negsizes,
+          y = newsizes,
           z = z,
           type = 'heatmap',
           colorscale = 'Viridis'))
