@@ -39,14 +39,14 @@ fig = go.Figure(data=go.Heatmap(
 
 axis_template = dict(autorange = True,
              showgrid = True, zeroline = False,
-             linecolor = 'black', showticklabels = False,
+             linecolor = 'black', showticklabels = True,
              ticks = '' )
 
 fig.update_layout(margin = dict(t=200,r=200,b=200,l=200),
     xaxis = axis_template,
     yaxis = axis_template,
     showlegend = False,
-    width = 700, height = 700,
+    width = 1080, height = 1080,
     autosize = False )
 
 fig.show()
