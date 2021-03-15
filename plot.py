@@ -23,7 +23,7 @@ z= []
 for v in versions:
     newlist = []
     for w in versions:
-        val = dups.loc[(dups['v1'] == v) & (dups['v2'] == w)]
+        val = dups.loc[(dups['v1'] == w) & (dups['v2'] == v)]
         if not val.empty:
             newlist.append(val.iloc[0]['measure'])
         else:
@@ -43,8 +43,19 @@ axis_template = dict(autorange = True,
              ticks = '' )
 
 fig.update_layout(margin = dict(t=200,r=200,b=200,l=200),
-    xaxis = axis_template,
-    yaxis=dict(autorange='reversed'),
+    xaxis = dict(
+        tickmode = 'array',
+        tickvals = newsizes,
+        ticktext = versions,
+        dtick=1000,
+        autorange='reversed'
+    ),
+    yaxis = dict(
+        tickmode = 'array',
+        tickvals = newsizes,
+        ticktext = versions,
+        dtick=1000
+    ),
     showlegend = False,
     width = 700, height = 700,
     autosize = False )
