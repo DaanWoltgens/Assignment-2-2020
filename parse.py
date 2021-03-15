@@ -1,4 +1,5 @@
 import json
+import csv
 from pathlib import Path
 from collections import defaultdict
 
@@ -6,7 +7,7 @@ from collections import defaultdict
 f=open("output_type1.json","r",encoding="utf8")
 dups = json.loads(f.read())
 
-d = defaultdict(lambda:0)
+count = defaultdict(lambda:[])
 
 
 for dup in dups:
@@ -18,10 +19,27 @@ for dup in dups:
         for i in inst_list:
             version2 = Path(i['path']).parts[0]
             #Iterate counter
-            d[version1,version2] += 1
+            line = p['lines']
+            count[version1,version2].append(line)
 
-f = open("type1.txt", "w") 
+linecount = defaultdict(lambda:0)
+for key in sorted(count):
+    current_range = [0,0]
+    for range in sorted(count[key]):
+        if range[0] > current_range[1]:
+            linecount[key] += current_range[1] - current_range[0]
+            current_range = range
+        else:
+            current_range[1] = range[1]
 
-for key in sorted(d):
-    f.write(', '.join(key) + ", " + str(d[key]) + "\n")
+f = open("type1.csv", "w") 
+
+f.write(', '.join(("v1", "v2", "dup lines", "v1_lines", "v2_lines")) + "\n")
+
+with open('loc.csv', mode='r') as infile:
+    reader = csv.reader(infile)
+    loc = {rows[0]:rows[1] for rows in reader}
+
+for key in sorted(linecount):
+    f.write(', '.join(key) + ", " + str(linecount[key]) +  ", " + loc[key[0]] + ", "+ loc[key[1]] + "\n")
         
