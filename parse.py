@@ -58,4 +58,4 @@ with open('loc.csv', mode='r') as infile:
     loc = {rows[0]:rows[1] for rows in reader}
 
 for key in sorted(data):
-    f.write(', '.join(key) + ", " + str(data[key]) +  ", " + str(loc[key[0]]) + ", "+ str(loc[key[1]]) + ", " + str(data[key] / (int(loc[key[0]]) + int(loc[key[1]]))) + "\n")
+    f.write(', '.join(key) + ", " + str(data[key]) +  ", " + str(loc[key[0]]) + ", "+ str(loc[key[1]]) + ", " + str(data[key] / max(int(loc[key[0]]), int(loc[key[1]]))) + "\n")

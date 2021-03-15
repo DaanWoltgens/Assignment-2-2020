@@ -12,6 +12,9 @@ loc = loc.sort_index(ascending=False)
 versions = loc.iloc[:,0].values.tolist()
 sizes = loc.iloc[:,1].values.tolist()
 
+highest = max(dups.iloc[:,5].values.tolist())
+print('Highest value:', highest)
+
 newsizes = []
 prev = 0
 for s in sizes:
@@ -25,7 +28,7 @@ for v in versions:
     for w in versions:
         val = dups.loc[(dups['v1'] == w) & (dups['v2'] == v)]
         if not val.empty:
-            newlist.append(val.iloc[0]['measure'])
+            newlist.append(val.iloc[0]['measure'] / highest)
         else:
             newlist.append(0)
     z.append(newlist)
