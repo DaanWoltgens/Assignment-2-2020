@@ -42,22 +42,29 @@ axis_template = dict(autorange = True,
              linecolor = 'black', showticklabels = False,
              ticks = '' )
 
+labelvals = []
+labeltext = []
+for i in range(len(versions)):
+    if versions[i][-1] == '0' or versions[i] in ['1.1', '1.2']:
+        labelvals.append(newsizes[i])
+        labeltext.append(versions[i])
+
 fig.update_layout(margin = dict(t=200,r=200,b=200,l=200),
     xaxis = dict(
         tickmode = 'array',
-        tickvals = newsizes,
-        ticktext = versions,
+        tickvals = labelvals,
+        ticktext = labeltext,
         dtick=1000,
         autorange='reversed'
     ),
     yaxis = dict(
         tickmode = 'array',
-        tickvals = newsizes,
-        ticktext = versions,
+        tickvals = labelvals,
+        ticktext = labeltext,
         dtick=1000
     ),
     showlegend = False,
-    width = 700, height = 700,
+    width = 1000, height = 1000,
     autosize = False )
 
 fig.show()
