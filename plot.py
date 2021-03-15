@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import csv
 
-dups = pd.read_csv('type1.csv', sep=r'\s*,\s*')
+dups = pd.read_csv('duplications.csv', sep=r'\s*,\s*')
 
 loc = pd.read_csv('loc.csv')
 
@@ -39,14 +39,14 @@ fig = go.Figure(data=go.Heatmap(
 
 axis_template = dict(autorange = True,
              showgrid = True, zeroline = False,
-             linecolor = 'black', showticklabels = True,
+             linecolor = 'black', showticklabels = False,
              ticks = '' )
 
 fig.update_layout(margin = dict(t=200,r=200,b=200,l=200),
     xaxis = axis_template,
     yaxis = axis_template,
     showlegend = False,
-    width = 1080, height = 1080,
+    width = 700, height = 700,
     autosize = False )
 
 fig.show()
